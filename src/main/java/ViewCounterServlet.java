@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello")
-public class HelloWorldServlet extends HttpServlet {
+@WebServlet(name = "ViewCounterServlet", urlPatterns = "/count")
+public class ViewCounterServlet extends HttpServlet {
+
+    int count = 0;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -17,15 +19,18 @@ public class HelloWorldServlet extends HttpServlet {
         //telling computer to write to webpage
         PrintWriter out = res.getWriter();
 
-        //getting param passed with get request
-        String name = req.getParameter("name");
-        if (name == null) {
-            name = "World";
-        }
-        String output = "<h1>Hello, " + name + "!</h1>";
+        count++;
 
-        //puts text onto webpage
+        //check for reset counter param
+        String reset = req.getParameter("reset");
+        if (reset != null && reset.equals("true")) {
+            count = 0;
+        }
+
+        String output = "This page has been viewed " + count + " times.";
+
         out.println(output);
 
     }
+
 }
