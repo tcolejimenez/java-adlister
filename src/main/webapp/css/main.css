@@ -1,0 +1,20 @@
+body {
+    position: relative;
+    display: block;
+}
+main {
+    position: relative;
+    margin-top: 10%;
+    /*padding-top: 500px;*/
+}
+nav ul {
+    list-style: none;
+    display: block;
+    position: absolute;
+    right: 100px;
+}
+
+nav li {
+    display: inline-block;
+    padding: 20px;
+}
